@@ -26,8 +26,12 @@ export default function Wisata() {
   const handleDelete = async (id) => {
     if (window.confirm("Yakin ingin menghapus wisata ini?")){
       try {
+
         const res = await fetch(`http://localhost:3001/wisata/${id}`, {
           method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          }
         });
         if (res.ok) {
           alert("Wisata berhasil dihapus");

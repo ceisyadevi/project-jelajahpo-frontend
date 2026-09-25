@@ -28,9 +28,13 @@ export default function EditWisata() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        
+        const token = localStorage.getItem("token");
         await fetch(`http://localhost:3001/wisata/${id}`, {
             method: "PUT",
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
             body: JSON.stringify(formData),
         });
         alert("Wisata berhasil diperbarui!");
